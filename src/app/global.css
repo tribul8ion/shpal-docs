@@ -74,10 +74,252 @@
 
 /* Прозрачный header */
 header {
-  background: rgba(10, 10, 10, 0.5) !important;
+  background: var(--color-fd-background) !important;
   backdrop-filter: blur(16px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid var(--color-fd-border) !important;
   transition: all 0.3s ease !important;
+  color: var(--color-fd-foreground) !important;
+}
+
+/* Header элементы используют цвета темы */
+header * {
+  color: var(--color-fd-foreground) !important;
+}
+
+header a,
+header span,
+header button {
+  color: var(--color-fd-foreground) !important;
+}
+
+header button:hover {
+  background-color: var(--color-fd-accent) !important;
+  color: var(--color-fd-accent-foreground) !important;
+}
+
+header svg {
+  color: var(--color-fd-foreground) !important;
+  stroke: var(--color-fd-foreground) !important;
+}
+
+/* Мобильный TOC header (nd-tocnav) - темная тема */
+.dark header#nd-tocnav,
+[data-theme="dark"] header#nd-tocnav,
+.dark [id="nd-tocnav"],
+[data-theme="dark"] [id="nd-tocnav"] {
+  background: var(--color-fd-background) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid var(--color-fd-border) !important;
+  color: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-tocnav *,
+[data-theme="dark"] header#nd-tocnav *,
+.dark [id="nd-tocnav"] *,
+[data-theme="dark"] [id="nd-tocnav"] * {
+  color: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-tocnav a,
+[data-theme="dark"] header#nd-tocnav a,
+.dark [id="nd-tocnav"] a,
+[data-theme="dark"] [id="nd-tocnav"] a {
+  color: var(--color-fd-muted-foreground) !important;
+}
+
+.dark header#nd-tocnav span,
+[data-theme="dark"] header#nd-tocnav span,
+.dark [id="nd-tocnav"] span,
+[data-theme="dark"] [id="nd-tocnav"] span {
+  color: var(--color-fd-foreground) !important;
+}
+
+/* Мобильный TOC header (nd-tocnav) - светлая тема */
+:root:not(.dark) header#nd-tocnav,
+html:not([data-theme="dark"]) header#nd-tocnav,
+[data-theme="light"] header#nd-tocnav,
+:root:not(.dark) [id="nd-tocnav"],
+html:not([data-theme="dark"]) [id="nd-tocnav"],
+[data-theme="light"] [id="nd-tocnav"] {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-tocnav *,
+html:not([data-theme="dark"]) header#nd-tocnav *,
+[data-theme="light"] header#nd-tocnav *,
+:root:not(.dark) [id="nd-tocnav"] *,
+html:not([data-theme="dark"]) [id="nd-tocnav"] *,
+[data-theme="light"] [id="nd-tocnav"] * {
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-tocnav a,
+html:not([data-theme="dark"]) header#nd-tocnav a,
+[data-theme="light"] header#nd-tocnav a,
+:root:not(.dark) [id="nd-tocnav"] a,
+html:not([data-theme="dark"]) [id="nd-tocnav"] a,
+[data-theme="light"] [id="nd-tocnav"] a {
+  color: rgba(10, 10, 10, 0.9) !important;
+}
+
+:root:not(.dark) header#nd-tocnav span,
+html:not([data-theme="dark"]) header#nd-tocnav span,
+[data-theme="light"] header#nd-tocnav span,
+:root:not(.dark) [id="nd-tocnav"] span,
+html:not([data-theme="dark"]) [id="nd-tocnav"] span,
+[data-theme="light"] [id="nd-tocnav"] span {
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-tocnav svg,
+html:not([data-theme="dark"]) header#nd-tocnav svg,
+[data-theme="light"] header#nd-tocnav svg,
+:root:not(.dark) [id="nd-tocnav"] svg,
+html:not([data-theme="dark"]) [id="nd-tocnav"] svg,
+[data-theme="light"] [id="nd-tocnav"] svg {
+  color: #0a0a0a !important;
+  stroke: #0a0a0a !important;
+}
+
+/* Используем переменные fumadocs для TOC header */
+header#nd-tocnav {
+  background-color: var(--color-fd-background) !important;
+  color: var(--color-fd-foreground) !important;
+  border-bottom-color: var(--color-fd-border) !important;
+}
+
+/* Мобильный header навигации (nd-subnav) - темная тема */
+.dark header#nd-subnav,
+[data-theme="dark"] header#nd-subnav,
+.dark [id="nd-subnav"],
+[data-theme="dark"] [id="nd-subnav"] {
+  background: var(--color-fd-background) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid var(--color-fd-border) !important;
+  color: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-subnav *,
+[data-theme="dark"] header#nd-subnav *,
+.dark [id="nd-subnav"] *,
+[data-theme="dark"] [id="nd-subnav"] * {
+  color: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-subnav a,
+[data-theme="dark"] header#nd-subnav a,
+.dark [id="nd-subnav"] a,
+[data-theme="dark"] [id="nd-subnav"] a {
+  color: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-subnav button,
+[data-theme="dark"] header#nd-subnav button,
+.dark [id="nd-subnav"] button,
+[data-theme="dark"] [id="nd-subnav"] button {
+  color: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-subnav button:hover,
+[data-theme="dark"] header#nd-subnav button:hover,
+.dark [id="nd-subnav"] button:hover,
+[data-theme="dark"] [id="nd-subnav"] button:hover {
+  background-color: var(--color-fd-accent) !important;
+  color: var(--color-fd-accent-foreground) !important;
+}
+
+.dark header#nd-subnav svg,
+[data-theme="dark"] header#nd-subnav svg,
+.dark [id="nd-subnav"] svg,
+[data-theme="dark"] [id="nd-subnav"] svg {
+  color: var(--color-fd-foreground) !important;
+  stroke: var(--color-fd-foreground) !important;
+}
+
+.dark header#nd-subnav span,
+[data-theme="dark"] header#nd-subnav span,
+.dark [id="nd-subnav"] span,
+[data-theme="dark"] [id="nd-subnav"] span {
+  color: var(--color-fd-foreground) !important;
+}
+
+/* Мобильный header навигации (nd-subnav) - светлая тема */
+:root:not(.dark) header#nd-subnav,
+html:not([data-theme="dark"]) header#nd-subnav,
+[data-theme="light"] header#nd-subnav,
+:root:not(.dark) [id="nd-subnav"],
+html:not([data-theme="dark"]) [id="nd-subnav"],
+[data-theme="light"] [id="nd-subnav"] {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-subnav *,
+html:not([data-theme="dark"]) header#nd-subnav *,
+[data-theme="light"] header#nd-subnav *,
+:root:not(.dark) [id="nd-subnav"] *,
+html:not([data-theme="dark"]) [id="nd-subnav"] *,
+[data-theme="light"] [id="nd-subnav"] * {
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-subnav a,
+html:not([data-theme="dark"]) header#nd-subnav a,
+[data-theme="light"] header#nd-subnav a,
+:root:not(.dark) [id="nd-subnav"] a,
+html:not([data-theme="dark"]) [id="nd-subnav"] a,
+[data-theme="light"] [id="nd-subnav"] a {
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-subnav button,
+html:not([data-theme="dark"]) header#nd-subnav button,
+[data-theme="light"] header#nd-subnav button,
+:root:not(.dark) [id="nd-subnav"] button,
+html:not([data-theme="dark"]) [id="nd-subnav"] button,
+[data-theme="light"] [id="nd-subnav"] button {
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-subnav button:hover,
+html:not([data-theme="dark"]) header#nd-subnav button:hover,
+[data-theme="light"] header#nd-subnav button:hover,
+:root:not(.dark) [id="nd-subnav"] button:hover,
+html:not([data-theme="dark"]) [id="nd-subnav"] button:hover,
+[data-theme="light"] [id="nd-subnav"] button:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-subnav svg,
+html:not([data-theme="dark"]) header#nd-subnav svg,
+[data-theme="light"] header#nd-subnav svg,
+:root:not(.dark) [id="nd-subnav"] svg,
+html:not([data-theme="dark"]) [id="nd-subnav"] svg,
+[data-theme="light"] [id="nd-subnav"] svg {
+  color: #0a0a0a !important;
+  stroke: #0a0a0a !important;
+}
+
+:root:not(.dark) header#nd-subnav span,
+html:not([data-theme="dark"]) header#nd-subnav span,
+[data-theme="light"] header#nd-subnav span,
+:root:not(.dark) [id="nd-subnav"] span,
+html:not([data-theme="dark"]) [id="nd-subnav"] span,
+[data-theme="light"] [id="nd-subnav"] span {
+  color: #0a0a0a !important;
+}
+
+/* Используем переменные fumadocs для subnav header */
+header#nd-subnav {
+  background-color: var(--color-fd-background) !important;
+  color: var(--color-fd-foreground) !important;
+  border-bottom-color: var(--color-fd-border) !important;
 }
 
 header[data-transparent="top"] {
@@ -85,9 +327,134 @@ header[data-transparent="top"] {
   border-bottom-color: transparent !important;
 }
 
+/* Для главной страницы - скрыть header */
+header[data-transparent="top"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Скрыть header с id="nd-nav" на главной странице */
+header#nd-nav,
+header[id="nd-nav"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Убрать отступ сверху у main на главной странице */
+main#nd-home-layout,
+main[id="nd-home-layout"] {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Прозрачный nav внутри header */
+header[data-transparent="top"] nav,
+header[data-transparent="top"] nav[data-orientation="horizontal"],
+header[data-transparent="top"] > nav {
+  background: transparent !important;
+}
+
+/* Прозрачные кнопки и элементы внутри nav - более агрессивные правила */
+header[data-transparent="top"] nav button,
+header[data-transparent="top"] nav button[data-search-full],
+header[data-transparent="top"] nav button[data-search],
+header[data-transparent="top"] nav button[data-theme-toggle],
+header[data-transparent="top"] nav button[aria-label*="Search"],
+header[data-transparent="top"] nav button[aria-label*="Toggle"],
+header[data-transparent="top"] nav button[aria-label*="Menu"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Переопределяем классы Tailwind для прозрачности */
+header[data-transparent="top"] nav button.bg-fd-secondary,
+header[data-transparent="top"] nav button[class*="bg-fd-secondary"],
+header[data-transparent="top"] nav button[class*="bg-fd-background"],
+header[data-transparent="top"] nav button[class*="bg-fd-accent"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+header[data-transparent="top"] nav button:hover,
+header[data-transparent="top"] nav button[data-search-full]:hover,
+header[data-transparent="top"] nav button[data-theme-toggle]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Прозрачные div внутри nav */
+header[data-transparent="top"] nav div,
+header[data-transparent="top"] nav > div {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Прозрачные kbd элементы */
+header[data-transparent="top"] nav kbd,
+header[data-transparent="top"] nav kbd.bg-fd-background,
+header[data-transparent="top"] nav kbd[class*="bg-fd-background"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Прозрачные ul внутри nav */
+header[data-transparent="top"] nav ul {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Прозрачные все элементы с классами fumadocs - очень агрессивно */
+header[data-transparent="top"] nav [class*="bg-fd-secondary"],
+header[data-transparent="top"] nav [class*="bg-fd-background"],
+header[data-transparent="top"] nav [class*="bg-fd-accent"],
+header[data-transparent="top"] nav button[class*="bg-fd"],
+header[data-transparent="top"] nav div[class*="bg-fd"],
+header[data-transparent="top"] nav [class*="bg-fd-secondary/50"],
+header[data-transparent="top"] nav [class*="bg-fd-secondary/"],
+header[data-transparent="top"] nav button[class*="border"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Специально для кнопки поиска с классом bg-fd-secondary/50 */
+header[data-transparent="top"] nav button[data-search-full][class*="bg-fd-secondary"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Переопределяем все возможные варианты фона в nav */
+header[data-transparent="top"] nav * {
+  background-color: transparent !important;
+}
+
+header[data-transparent="top"] nav button,
+header[data-transparent="top"] nav div {
+  background-color: transparent !important;
+}
+
+/* Дополнительно для главной страницы - скрыть header */
+body > div > header[data-transparent="top"],
+[data-pathname="/"] header,
+html body header[data-transparent="top"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
 header[data-transparent="none"] {
-  background: rgba(10, 10, 10, 0.8) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--color-fd-background) !important;
+  border-bottom: 1px solid var(--color-fd-border) !important;
 }
 
 /* Скрыть поиск и переключатель темы */

@@ -1,387 +1,466 @@
-import Link from 'next/link';
-import { Printer, Settings, Wrench, Tag, UserPlus, BookOpen, FileText, Download, Code, Zap } from 'lucide-react';
-import StarBackground from '@/components/star-background';
-import type { Metadata } from 'next';
+"use client";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import {
+  BookOpen,
+  Settings,
+  Wrench,
+  Tag,
+  Printer,
+  FileText,
+  Download,
+  Code,
+  Zap,
+} from "lucide-react";
 
-export const metadata: Metadata = {
-  title: 'Shpal Docs - Документация EXPOFORUM',
-  description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
-  openGraph: {
-    title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
-    description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
-    url: 'https://shpaldocs.ru',
-    siteName: 'www.shpaldocs.ru',
-    images: [
-      {
-        url: '/images/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Shpal Docs - Документация по настройке принтеров EXPOFORUM',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
-    description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
-    images: ['/images/og-image.png'],
-  },
-};
+interface MousePositionProps {
+  x: number;
+  y: number;
+}
 
 export default function HomePage() {
+  const [mounted, setMounted] = useState<boolean>(false);
+  const [width, setWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1024
+  );
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    setMounted(true);
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+
+  const [mousePosition, setMousePosition] = useState<MousePositionProps>({
+    x: 50,
+    y: 30,
+  });
+
+  useEffect(() => {
+    // Only add mouse tracking for non-mobile devices
+    if (isMobile) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (typeof window === "undefined") return;
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [isMobile]);
+
+  const containerStyle = {
+    background: `
+      radial-gradient(ellipse 80% 60% at ${mousePosition.x}% ${
+      mousePosition.y * 0.3
+    }%, rgba(59, 130, 246, 0.15), transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 0%, rgba(99, 102, 241, 0.1), transparent 60%),
+      #000000
+    `,
+    transition: "background 2s ease-out",
+  };
+
+  const gridStyle = {
+    backgroundImage: `
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+    `,
+    backgroundSize: "80px 80px",
+    transform: `translate(${mousePosition.x * 0.02}px, ${
+      mousePosition.y * 0.02
+    }px)`,
+    animation: "gridFloat 20s linear infinite",
+  };
+
   return (
-    <>
-      <StarBackground />
-      <div className="flex flex-col min-h-[calc(100vh-3.5rem)] relative z-10">
-      {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center px-4 py-16 sm:py-24 md:py-32 lg:py-40 gap-6 sm:gap-8">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold relative select-none leading-tight" style={{
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(200,220,255,0.7) 50%, rgba(150,180,255,0.8) 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          textShadow: 'none',
-          letterSpacing: '-0.02em',
-          filter: 'drop-shadow(0 0 60px rgba(150,180,255,0.4)) drop-shadow(0 0 30px rgba(255,255,255,0.3))',
-          userSelect: 'none',
-          WebkitUserSelect: 'none',
-          MozUserSelect: 'none',
-          msUserSelect: 'none',
-          cursor: 'default'
-        }}>
-          EXPOFORUM
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 max-w-3xl backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg">
-          Документация по настройке оборудования для регистрации
-        </p>
-        <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mt-2 sm:mt-4 justify-center w-full sm:w-auto">
-          <Link
-            href="/docs"
-            className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-white/[0.08] backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.15] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
-          >
-            📚 Открыть документацию
-          </Link>
-          <Link
-            href="/docs/godex/godex-80x60"
-            className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.08] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
-          >
-            🚀 Начать с GoDEX
-          </Link>
-        </div>
-        <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-white/60 max-w-2xl px-4">
-          💡 <strong>Совет:</strong> Используйте боковую панель навигации или поиск для быстрого доступа к нужным инструкциям
-        </div>
-      </section>
+    <div
+      className={`min-h-screen w-full relative bg-black overflow-hidden ${
+        !isMobile ? "cursor-none" : ""
+      }`}
+    >
+      {/* Custom cursor - only render for non-mobile devices */}
+      {mounted && !isMobile && (
+        <div
+          className="fixed w-6 h-6 bg-white/80 rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-100 ease-out"
+          style={{
+            left: `${(mousePosition.x * window.innerWidth) / 100}px`,
+            top: `${(mousePosition.y * window.innerHeight) / 100}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      )}
 
-      {/* About Documentation Section */}
-      <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-16 max-w-6xl mx-auto w-full">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-white drop-shadow-lg">О документации</h2>
-          <p className="text-sm sm:text-base md:text-lg text-white/80 max-w-3xl mx-auto">
-            Полный справочник по настройке, обслуживанию и устранению неисправностей принтеров для системы регистрации EXPOFORUM
-          </p>
-        </div>
+      <style jsx>{`
+        @keyframes gridFloat {
+          0%,
+          100% {
+            transform: translate(0, 0);
+          }
+          50% {
+            transform: translate(20px, 15px);
+          }
+        }
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+            opacity: 0.4;
+          }
+          50% {
+            transform: translateY(-30px);
+            opacity: 0.8;
+          }
+        }
+        @keyframes pulse {
+          0%,
+          100% {
+            opacity: 0.6;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+        @keyframes scroll {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(12px);
+          }
+        }
+        .float-dot {
+          animation: float 4s ease-in-out infinite;
+        }
+        .pulse-border {
+          animation: pulse 3s ease-in-out infinite;
+        }
+        .scroll-dot {
+          animation: scroll 2s ease-in-out infinite;
+        }
+      `}</style>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
-          <Link href="/docs/godex/godex-80x60" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-2 sm:p-3 rounded-lg bg-blue-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-blue-500/30 transition-colors">
-              <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-blue-300" />
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">Руководства по принтерам</h3>
-            <p className="text-xs sm:text-sm text-white/70">
-              Подробные инструкции по настройке принтеров GoDEX, Zebra, Brother и других производителей с пошаговыми описаниями и иллюстрациями
-            </p>
-          </Link>
+      <div className="absolute inset-0 z-0" style={containerStyle} />
 
-          <Link href="/docs/godex/godex-maintenance" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-2 sm:p-3 rounded-lg bg-green-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-green-500/30 transition-colors">
-              <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-green-300" />
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-green-300 transition-colors">Устранение неисправностей</h3>
-            <p className="text-xs sm:text-sm text-white/70">
-              Решения типичных проблем, инструкции по обслуживанию и калибровке оборудования для поддержания работоспособности
-            </p>
-          </Link>
+      <div className="absolute inset-0 z-0 opacity-30" style={gridStyle} />
 
-          <Link href="/docs/additional/drivers-godex" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-2 sm:p-3 rounded-lg bg-purple-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-purple-500/30 transition-colors">
-              <Download className="w-5 h-5 sm:w-6 sm:h-6 text-purple-300" />
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">Драйверы и утилиты</h3>
-            <p className="text-xs sm:text-sm text-white/70">
-              Готовые пакеты драйверов, утилиты для диагностики и вспомогательные инструменты для работы с принтерами
-            </p>
-          </Link>
-
-          <Link href="/docs/additional/spigf-scripts" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-2 sm:p-3 rounded-lg bg-orange-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-orange-500/30 transition-colors">
-              <Code className="w-5 h-5 sm:w-6 sm:h-6 text-orange-300" />
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-orange-300 transition-colors">Скрипты и автоматизация</h3>
-            <p className="text-xs sm:text-sm text-white/70">
-              PowerShell скрипты для автоматизации задач, исправления ошибок печати и оптимизации настроек Windows
-            </p>
-          </Link>
-
-          <Link href="/docs/changelog" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-2 sm:p-3 rounded-lg bg-pink-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-pink-500/30 transition-colors">
-              <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-pink-300" />
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-pink-300 transition-colors">История изменений</h3>
-            <p className="text-xs sm:text-sm text-white/70">
-              Следите за обновлениями документации, новыми руководствами и улучшениями существующих инструкций
-            </p>
-          </Link>
-
-          <Link href="/docs/tags" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-2 sm:p-3 rounded-lg bg-cyan-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-cyan-500/30 transition-colors">
-              <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-300" />
-            </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors">Быстрый поиск</h3>
-            <p className="text-xs sm:text-sm text-white/70">
-              Удобная навигация по тегам, поиск по содержимому и структурированный каталог всех доступных руководств
-            </p>
-          </Link>
-        </div>
-
-        <div className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.05] border border-white/15 hover:bg-white/[0.08] transition-all">
-          <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-            <div className="p-2 rounded-lg bg-blue-500/20">
-              <BookOpen className="w-5 h-5 text-blue-300" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-base sm:text-lg font-semibold text-white mb-3">Структура документации</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 mb-4">
-                <div>
-                  <p className="font-medium text-white/90 mb-2">📖 Основные разделы:</p>
-                  <ul className="space-y-1.5 ml-4">
-                    <li className="flex items-center gap-2">
-                      <span className="text-blue-400">•</span> Принтеры GoDEX (4 руководства)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-green-400">•</span> Принтеры Zebra (3 руководства)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-pink-400">•</span> Принтеры Brother (3 руководства)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-orange-400">•</span> Другие принтеры
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-medium text-white/90 mb-2">🛠️ Дополнительные материалы:</p>
-                  <ul className="space-y-1.5 ml-4">
-                    <li className="flex items-center gap-2">
-                      <span className="text-purple-400">•</span> Драйверы и утилиты
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-cyan-400">•</span> Windows скрипты
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-yellow-400">•</span> Скрипты SPIGF2025
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="text-indigo-400">•</span> Центр загрузок
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-xs text-white/60">
-                  💡 <strong className="text-white/80">Совет:</strong> Все руководства содержат пошаговые инструкции с иллюстрациями. Используйте боковую панель для быстрой навигации.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Links Section */}
-      <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-16 max-w-6xl mx-auto w-full">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-center text-white drop-shadow-lg">Быстрый доступ</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-12">
-          {/* GoDEX */}
-          <Link
-            href="/docs/godex/godex-80x60"
-            className="group p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
-          >
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="p-2 sm:p-3 rounded-lg bg-blue-400/20 group-hover:bg-blue-400/30 transition-colors">
-                <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-blue-300" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-base sm:text-lg mb-1 text-white group-hover:text-blue-300 transition-colors">
-                  GoDEX
-                </h3>
-                <p className="text-xs sm:text-sm text-white/70">
-                  Настройка принтеров этикеток Godex
-                </p>
-              </div>
-            </div>
-          </Link>
-
-          {/* Zebra */}
-          <Link
-            href="/docs/zebra/zebra-badges"
-            className="group p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
-          >
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="p-2 sm:p-3 rounded-lg bg-green-400/20 group-hover:bg-green-400/30 transition-colors">
-                <Tag className="w-5 h-5 sm:w-6 sm:h-6 text-green-300" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-base sm:text-lg mb-1 text-white group-hover:text-green-300 transition-colors">
-                  Zebra
-                </h3>
-                <p className="text-xs sm:text-sm text-white/70">
-                  Настройка принтеров для печати бейджей
-                </p>
-              </div>
-            </div>
-          </Link>
-
-          {/* Brother */}
-          <Link
-            href="/docs/brother/brother-samoreg"
-            className="group p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
-          >
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="p-2 sm:p-3 rounded-lg bg-pink-400/20 group-hover:bg-pink-400/30 transition-colors">
-                <Printer className="w-5 h-5 sm:w-6 sm:h-6 text-pink-300" />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-base sm:text-lg mb-1 text-white group-hover:text-pink-300 transition-colors">
-                  Brother
-                </h3>
-                <p className="text-xs sm:text-sm text-white/70">
-                  Настройка принтеров для саморегистрации
-                </p>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Popular Guides */}
-        <div className="mt-8 sm:mt-12">
-          <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-white drop-shadow-lg">Популярные руководства</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-            <Link
-              href="/docs/godex/godex-80x60"
-              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-blue-300" />
-                <span className="font-medium text-sm sm:text-base text-white group-hover:text-blue-300 transition-colors">
-                  Настройка печати Godex из Windows
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70">
-                Пошаговая инструкция по настройке параметров печати
-              </p>
-            </Link>
-
-            <Link
-              href="/docs/zebra/zebra-white"
-              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                <Tag className="w-4 h-4 sm:w-5 sm:h-5 text-green-300" />
-                <span className="font-medium text-sm sm:text-base text-white group-hover:text-green-300 transition-colors">
-                  Настройка Zebra для этикеток 80×60
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70">
-                Инструкция по настройке принтера для белых этикеток
-              </p>
-            </Link>
-
-            <Link
-              href="/docs/brother/brother-toner"
-              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-pink-300" />
-                <span className="font-medium text-sm sm:text-base text-white group-hover:text-pink-300 transition-colors">
-                  Сброс ошибки тонера Brother
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70">
-                Решение проблемы с ошибками тонера
-              </p>
-            </Link>
-
-            <Link
-              href="/docs/godex/godex-maintenance"
-              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-orange-300" />
-                <span className="font-medium text-sm sm:text-base text-white group-hover:text-orange-300 transition-colors">
-                  Обслуживание принтеров Godex
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70">
-                Очистка и устранение неисправностей
-              </p>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="px-4 py-8 sm:py-12 border-t border-white/10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">4</div>
-              <div className="text-xs sm:text-sm text-white/70">Руководства GoDEX</div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">3</div>
-              <div className="text-xs sm:text-sm text-white/70">Руководства Zebra</div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">3</div>
-              <div className="text-xs sm:text-sm text-white/70">Руководства Brother</div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">10+</div>
-              <div className="text-xs sm:text-sm text-white/70">Всего инструкций</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* CTA Section */}
-      <section className="px-4 py-8 sm:py-12 text-center border-t border-white/10">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-white drop-shadow-lg">Готовы начать?</h2>
-          <p className="text-sm sm:text-base text-white/80 mb-4 sm:mb-6 drop-shadow-md">
-            Выберите нужное руководство или воспользуйтесь поиском для быстрого доступа к информации
-          </p>
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
-            <Link
-              href="/docs"
-              className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-white/[0.08] backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.15] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
-            >
-              📚 Открыть документацию
-            </Link>
-            <Link
-              href="/docs/downloads"
-              className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-xl backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.08] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
-            >
-              📥 Центр загрузок
-            </Link>
-          </div>
-        </div>
-      </section>
+      <div className="absolute inset-0 z-10">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/40 rounded-full float-dot"
+            style={{
+              left: `${15 + i * 8}%`,
+              top: `${20 + ((i * 7) % 60)}%`,
+              animationDelay: `${i * 0.3}s`,
+              transform: `translateX(${
+                mousePosition.x * 0.01 * (i % 2 === 0 ? 1 : -1)
+              }px)`,
+            }}
+          />
+        ))}
       </div>
-    </>
+
+      <div className="absolute inset-0 z-5 flex items-center justify-center pointer-events-none">
+        <div
+          className="text-[15rem] md:text-[25rem] lg:text-[30rem] font-bold text-white/5 select-none"
+          style={{
+            opacity: 1,
+            transition: "opacity 2s ease-out 0.5s",
+          }}
+        >
+          Shpalich
+        </div>
+      </div>
+
+      <div className="relative z-20">
+        <div className="flex flex-col items-center justify-center min-h-screen px-6 pt-20">
+          <div className="text-center space-y-8 max-w-5xl mx-auto">
+            <div className="space-y-8">
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-12 h-12 border-2 border-white/20 rounded-lg flex items-center justify-center mr-3">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-lg font-light text-white/60">
+                  Shpal Docs
+                </span>
+              </div>
+
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[0.9] text-center">
+                Shpal Docs
+                <br />
+                <span className="text-white/60">
+                  Документация по настройке оборудования
+                </span>
+              </h1>
+
+              <p className="text-lg md:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed text-center">
+                Полный справочник по настройке, обслуживанию и устранению
+                неисправностей принтеров для системы регистрации EXPOFORUM
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href={"/docs"}>
+                <button
+                  className={`px-8 py-4 bg-white text-black rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-white/20 active:scale-95 ${
+                    !isMobile ? "cursor-none" : ""
+                  }`}
+                >
+                  📚 Открыть документацию
+                </button>
+              </Link>
+
+              <Link href="/docs/godex/godex-80x60">
+                <button
+                  className={`px-8 py-4 border-2 border-gray-600 rounded-lg font-semibold text-gray-300 hover:text-white hover:border-white hover:scale-105 transition-all duration-300 active:scale-95 ${
+                    !isMobile ? "cursor-none" : ""
+                  }`}
+                >
+                  🚀 Начать с GoDEX →
+                </button>
+              </Link>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-12 justify-center items-center mt-16 pt-12 border-t border-gray-800">
+              {[
+                { number: "4", label: "Руководства GoDEX" },
+                { number: "3", label: "Руководства Zebra" },
+                { number: "3", label: "Руководства Brother" },
+                { number: "10+", label: "Всего инструкций" },
+              ].map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-400 font-light">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-20 flex justify-center pb-8 top-10">
+          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center pulse-border">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 scroll-dot" />
+          </div>
+        </div>
+
+        <section id="features" className="py-32 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                О документации
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Полный справочник по настройке, обслуживанию и устранению
+                неисправностей принтеров для системы регистрации EXPOFORUM
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Руководства по принтерам",
+                  desc: "Подробные инструкции по настройке принтеров GoDEX, Zebra, Brother и других производителей с пошаговыми описаниями и иллюстрациями",
+                  icon: <BookOpen className="w-6 h-6 text-white" />,
+                  href: "/docs/godex/godex-80x60",
+                },
+                {
+                  title: "Устранение неисправностей",
+                  desc: "Решения типичных проблем, инструкции по обслуживанию и калибровке оборудования для поддержания работоспособности",
+                  icon: <Wrench className="w-6 h-6 text-white" />,
+                  href: "/docs/godex/godex-maintenance",
+                },
+                {
+                  title: "Драйверы и утилиты",
+                  desc: "Готовые пакеты драйверов, утилиты для диагностики и вспомогательные инструменты для работы с принтерами",
+                  icon: <Download className="w-6 h-6 text-white" />,
+                  href: "/docs/additional/drivers-godex",
+                },
+                {
+                  title: "Скрипты и автоматизация",
+                  desc: "PowerShell скрипты для автоматизации задач, исправления ошибок печати и оптимизации настроек Windows",
+                  icon: <Code className="w-6 h-6 text-white" />,
+                  href: "/docs/additional/spigf-scripts",
+                },
+                {
+                  title: "История изменений",
+                  desc: "Следите за обновлениями документации, новыми руководствами и улучшениями существующих инструкций",
+                  icon: <FileText className="w-6 h-6 text-white" />,
+                  href: "/docs/changelog",
+                },
+                {
+                  title: "Быстрый поиск",
+                  desc: "Удобная навигация по тегам, поиск по содержимому и структурированный каталог всех доступных руководств",
+                  icon: <Zap className="w-6 h-6 text-white" />,
+                  href: "/docs/tags",
+                },
+              ].map((feature, i) => (
+                <Link
+                  key={i}
+                  href={feature.href}
+                  className="group p-8 rounded-xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm hover:border-gray-600 hover:scale-105 hover:bg-gray-900/30 hover:-translate-y-2 transition-all duration-500"
+                >
+                  <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-gray-100 transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                    {feature.desc}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-32 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                Быстрый доступ
+              </h2>
+              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                Популярные руководства и инструкции для быстрого старта
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "GoDEX",
+                  desc: "Настройка принтеров этикеток Godex",
+                  icon: <Settings className="w-5 h-5 text-blue-300" />,
+                  href: "/docs/godex/godex-80x60",
+                },
+                {
+                  title: "Zebra",
+                  desc: "Настройка принтеров для печати бейджей",
+                  icon: <Tag className="w-5 h-5 text-green-300" />,
+                  href: "/docs/zebra/zebra-badges",
+                },
+                {
+                  title: "Brother",
+                  desc: "Настройка принтеров для саморегистрации",
+                  icon: <Printer className="w-5 h-5 text-pink-300" />,
+                  href: "/docs/brother/brother-samoreg",
+                },
+              ].map((item, i) => (
+                <Link
+                  key={i}
+                  href={item.href}
+                  className="p-8 rounded-xl border border-gray-800 bg-gray-900/20 backdrop-blur-sm hover:border-gray-600 hover:scale-105 hover:bg-gray-900/30 transition-all duration-500"
+                >
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="p-3 rounded-lg bg-gray-800/50">
+                      {item.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-20">
+              <h3 className="text-3xl font-bold text-white mb-8 text-center">
+                Популярные руководства
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    title: "Настройка печати Godex из Windows",
+                    desc: "Пошаговая инструкция по настройке параметров печати",
+                    icon: <Settings className="w-5 h-5 text-blue-300" />,
+                    href: "/docs/godex/godex-80x60",
+                  },
+                  {
+                    title: "Настройка Zebra для этикеток 80×60",
+                    desc: "Инструкция по настройке принтера для белых этикеток",
+                    icon: <Tag className="w-5 h-5 text-green-300" />,
+                    href: "/docs/zebra/zebra-white",
+                  },
+                  {
+                    title: "Сброс ошибки тонера Brother",
+                    desc: "Решение проблемы с ошибками тонера",
+                    icon: <Wrench className="w-5 h-5 text-pink-300" />,
+                    href: "/docs/brother/brother-toner",
+                  },
+                  {
+                    title: "Обслуживание принтеров Godex",
+                    desc: "Очистка и устранение неисправностей",
+                    icon: <Wrench className="w-5 h-5 text-orange-300" />,
+                    href: "/docs/godex/godex-maintenance",
+                  },
+                ].map((guide, i) => (
+                  <Link
+                    key={i}
+                    href={guide.href}
+                    className="p-6 rounded-lg border border-gray-800 bg-gray-900/20 backdrop-blur-sm hover:border-gray-600 hover:bg-gray-900/30 transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      {guide.icon}
+                      <span className="font-semibold text-white">
+                        {guide.title}
+                      </span>
+                    </div>
+                    <p className="text-gray-400 text-sm">{guide.desc}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-32 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8">
+              Готовы начать?
+            </h2>
+            <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+              Выберите нужное руководство или воспользуйтесь поиском для
+              быстрого доступа к информации
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/docs">
+                <button
+                  className={`px-12 py-6 bg-white text-black rounded-lg font-semibold text-xl hover:scale-105 hover:shadow-xl hover:shadow-white/30 transition-all duration-300 active:scale-95 ${
+                    !isMobile ? "cursor-none" : ""
+                  }`}
+                >
+                  📚 Открыть документацию
+                </button>
+              </Link>
+              <Link href="/docs/downloads">
+                <button
+                  className={`px-12 py-6 border-2 border-gray-600 text-gray-300 rounded-lg font-semibold text-xl hover:border-white hover:text-white hover:scale-105 transition-all duration-300 active:scale-95 ${
+                    !isMobile ? "cursor-none" : ""
+                  }`}
+                >
+                  📥 Центр загрузок
+                </button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }
