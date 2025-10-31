@@ -1,0 +1,15 @@
+{
+  "title": "Документация",
+  "pages": [
+    "index",
+    "downloads",
+    "changelog",
+    "---",
+    "godex",
+    "zebra", 
+    "brother",
+    "other",
+    "---",
+    "additional"
+  ]
+}

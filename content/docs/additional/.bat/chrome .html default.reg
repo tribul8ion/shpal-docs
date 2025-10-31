@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\.html]
+
+[HKEY_CLASSES_ROOT\.html]
+"NoOpen"=""
+
+[-HKEY_CLASSES_ROOT\SystemFileAssociations\.html]
+
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.html]
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.html\OpenWithList]
+
+[-HKEY_CURRENT_USER\Software\Microsoft\Windows\Roaming\OpenWith\FileExts\.html]

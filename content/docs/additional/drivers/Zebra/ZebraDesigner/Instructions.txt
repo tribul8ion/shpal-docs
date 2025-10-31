@@ -1,0 +1,7 @@
+- Install.
+
+- Replace fix here:
+
+C:\Program Files\Zebra Technologies\ZebraDesigner 3\bin.net
+
+- Use a firewall to prevent online license checks.

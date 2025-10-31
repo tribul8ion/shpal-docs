@@ -1,0 +1,8 @@
+# robots.txt для Shpal Docs
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap.xml
+

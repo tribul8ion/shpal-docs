@@ -1,0 +1,39 @@
+<driver version='6.6'>
+
+<stock>
+Name=2 x 4
+Data=WkxJQhwAAAAZAAAAeJwrOMbA8KCHkeEbCwMYwwCQWQsAZpUFGQ==
+</stock>
+
+<stock>
+Name=3 x 2
+Data=WkxJQhwAAAAZAAAAeJxbocnIUHCMgeEbCwTDAAsDcy0AVuYEgQ==
+</stock>
+
+<stock>
+Name=3.94 x 5.91
+Data=WkxJQhwAAAAaAAAAeJxb0MbI8NiTieEbCwMYwwALA2stAF+SBNA=
+Type=Die Cut
+</stock>
+
+<stock>
+Name=4 x 3
+Data=WkxJQhwAAAAaAAAAeJx70MPIsEKTkeEbCwMYwwALA0stAF60BLk=
+</stock>
+
+<stock>
+Name=4 x 4
+Data=WkxJQhwAAAAZAAAAeJx70MPI8ACIv7EwgDEMsDAw1gIAbNMFUQ==
+</stock>
+
+<stock>
+Name=4 x 6
+Data=WkxJQhwAAAAaAAAAeJx70MPIEBDMxPCNhQGMYYCFgakWAFpMBIo=
+</stock>
+
+<font type='Bar Code'>
+Name=Sample Bar Code Font
+Data=WkxJQqgAAABAAAAAeJybwMgABgoaZgbBibkFOakKTolFCs75KakKbvl5JQxIAKTUEEQoMKQwoIEYdAEkwA4m2TDEGfHoQQcAOGsJSg==
+</font>
+
+</driver>

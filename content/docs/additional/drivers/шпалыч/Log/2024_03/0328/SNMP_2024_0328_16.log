@@ -1,0 +1,10 @@
+16:36:09 [SNMP]
+16:36:09 ListenPort = 162
+16:36:09 EnableSSL = false
+16:36:09 Try to initialize the SNMP instance...
+16:36:09 Start Listen...(Ready)
+16:36:09 
+16:36:11 [ListenUDP] System.Net.Sockets.SocketException (0x80004005): Операция блокирования прервана вызовом WSACancelBlockingCall
+   в System.Net.Sockets.Socket.ReceiveFrom(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags, EndPoint& remoteEP)
+   в System.Net.Sockets.UdpClient.Receive(IPEndPoint& remoteEP)
+   в LibSocket.UDP_Server_Sync.ListenUDP()

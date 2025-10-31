@@ -1,0 +1,17 @@
+{
+  "name": "Shpal Docs - Документация по принтерам",
+  "short_name": "Shpal Docs",
+  "description": "Руководства по настройке принтеров GoDEX, Zebra, Brother для системы регистрации",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#1e40af",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
+

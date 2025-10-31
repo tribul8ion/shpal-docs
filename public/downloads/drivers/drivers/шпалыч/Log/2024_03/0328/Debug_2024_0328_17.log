@@ -1,0 +1,25 @@
+17:07:03 ==================================
+17:07:03  GoUtilityService - Start
+17:07:03 ==================================
+17:07:03 
+17:07:03 Press Enter to Stop Service...
+17:07:03 
+17:07:03 [Program Start] Version = 1.0.1.20230724 (10:07:12) ( Console Mode )
+17:07:03 [PrintService]
+17:07:03 
+17:07:03 ====================
+17:07:03 Refresh Job List : 
+17:07:03 ListenPort = 2019
+17:07:03 EnableSSL = False
+17:07:03 Encoding = System.Text.UTF8Encoding
+17:07:03 Try to initialize the service instance...
+17:07:03 Start Listen...(Ready)
+17:07:03 
+17:07:03 [SNMP]
+17:07:03 ListenPort = 162
+17:07:03 EnableSSL = false
+17:07:03 Try to initialize the SNMP instance...
+17:07:03 Start Listen...(Ready)
+17:07:03 
+17:07:03 
+

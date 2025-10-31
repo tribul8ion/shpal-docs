@@ -1,0 +1,357 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/vitepress.css';
+@import 'fumadocs-ui/css/preset.css';
+/* tailwindcss-animate плагин временно отключен из-за проблем с разрешением модулей в Turbopack */
+/* Все нужные анимации уже добавлены через keyframes ниже */
+
+/* Дополнительные настройки темы как в оригинале fumadocs-dev */
+@theme {
+  --spacing-fd-container: 1436px;
+  --color-brand: hsl(55, 100%, 38%);
+  --color-brand-foreground: white;
+  --color-brand-secondary: #9b18dc;
+  --color-brand-secondary-foreground: #efccff;
+  --color-brand-200: hsl(41, 100%, 50%);
+
+  --color-landing-foreground: #59592a;
+  --color-landing-foreground-200: #a8a866;
+}
+
+/* Catppuccin имеет свои настройки sidebar - убираем кастомные для neutral */
+
+.dark {
+  --color-landing-foreground: #e4e2d0;
+  --color-landing-foreground-200: #b7af7e;
+
+  --color-brand: #fff383;
+  --color-brand-secondary: #ad41e7;
+  --color-brand-secondary-foreground: #f5e4ff;
+  --color-brand-foreground: black;
+  --color-brand-200: #fff7c8;
+  
+  --headless-color: hsl(250 100% 80%);
+  --ui-color: #fff383;
+}
+
+/* Дополнительные цвета для UI как в оригинале */
+.ui {
+  --color-fd-primary: var(--ui-color);
+}
+
+.headless {
+  --color-fd-primary: var(--headless-color);
+}
+
+:root {
+  --headless-color: hsl(250, 80%, 54%);
+  --ui-color: hsl(41, 100%, 40%);
+}
+
+/* Мобильные оптимизации */
+@media (max-width: 768px) {
+  /* Улучшенная прокрутка на iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Предотвращение zoom при фокусе на input */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Уменьшение отступов на мобильных */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Увеличение размера кнопок для тач-скринов */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Прозрачный header */
+header {
+  background: rgba(10, 10, 10, 0.5) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+header[data-transparent="top"] {
+  background: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+header[data-transparent="none"] {
+  background: rgba(10, 10, 10, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Скрыть поиск и переключатель темы */
+header button[aria-label*="Search"],
+header button[aria-label*="search"],
+header [role="search"],
+header .search-toggle,
+header button[aria-label*="Toggle"],
+header button[aria-label*="theme"],
+header button[aria-label*="Theme"],
+header [data-theme-toggle],
+nav [role="search"],
+nav button[type="button"][class*="search"],
+[data-search-toggle],
+button[data-search],
+[class*="search-toggle"],
+[class*="SearchToggle"],
+nav > div > button,
+header nav > div:last-child,
+header nav > div:has(button[aria-label]),
+/* Скрыть контейнер с кнопками в правой части */
+header nav > div:has(kbd) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+.border-s a:hover {
+  color: var(--color-fd-primary);
+}
+
+/* Плавные анимации и улучшения UX из fumadocs-dev */
+@theme inline {
+  --default-mono-font-family: var(--font-mono);
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes stroke {
+    from {
+      stroke-dasharray: 1000;
+    }
+    to {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 2000;
+    }
+  }
+
+  --animate-stroke: stroke 5s linear infinite;
+
+  --color-gradient-radial: radial-gradient(circle, var(--tw-gradient-stops));
+  --color-repeat-gradient-to-r: repeating-linear-gradient(
+    to right,
+    var(--tw-gradient-stops)
+  );
+  --color-repeat-gradient-to-br: repeating-linear-gradient(
+    to bottom right,
+    var(--tw-gradient-stops)
+  );
+}
+
+/* Дополнительные анимации из оригинального fumadocs-dev */
+@keyframes circuit_1 {
+  0% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(100px);
+  }
+}
+
+@keyframes circuit_1_x_energy {
+  0%,
+  46% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  47%,
+  70% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(212px);
+  }
+}
+
+/* Улучшенное поведение прокрутки и шрифты */
+body {
+  overscroll-behavior-y: none;
+  background-color: var(--color-fd-background);
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+/* Опциональный фоновый градиент для dark mode (можно раскомментировать) */
+/* .dark body {
+  background-image: linear-gradient(
+    rgba(5, 105, 255, 0.15),
+    transparent 20rem,
+    transparent
+  );
+  background-repeat: no-repeat;
+} */
+
+/* Применение моноширинного шрифта для кода */
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono, ui-monospace, 'Courier New', monospace);
+}
+
+/* Улучшения таблиц - современный стиль из fumadocs-dev */
+.prose table {
+  @apply w-full border-collapse border border-fd-border rounded-lg overflow-hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.prose thead {
+  @apply bg-fd-muted/50;
+}
+
+.prose th {
+  @apply px-4 py-3 text-left text-sm font-semibold text-fd-foreground border-b border-fd-border;
+}
+
+.prose td {
+  @apply px-4 py-3 text-sm text-fd-muted-foreground border-b border-fd-border;
+  transition: background-color 0.15s ease;
+}
+
+.prose tbody tr:hover td {
+  @apply bg-fd-accent/30;
+}
+
+.prose tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+/* Плавные transitions для ссылок и кнопок */
+a,
+button {
+  transition: all 0.2s ease;
+}
+
+/* Улучшенные стили для Callout - более современный вид */
+.prose [data-callout] {
+  @apply rounded-lg border-l-4 p-4 my-4;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.prose [data-callout]:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Убрано fade-in для всего контента - слишком агрессивно */
+
+/* Улучшения CodeBlock - современный стиль из fumadocs-dev */
+.shiki,
+.prose pre,
+.prose code[class*="language"] {
+  @apply rounded-lg border border-fd-border;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.shiki:hover,
+.prose pre:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Улучшенный скроллбар для CodeBlock */
+.fd-scroll-container,
+.shiki div[class*="overflow-auto"],
+.prose pre {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-fd-border) transparent;
+}
+
+.fd-scroll-container::-webkit-scrollbar,
+.shiki div[class*="overflow-auto"]::-webkit-scrollbar,
+.prose pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.fd-scroll-container::-webkit-scrollbar-track,
+.shiki div[class*="overflow-auto"]::-webkit-scrollbar-track,
+.prose pre::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.fd-scroll-container::-webkit-scrollbar-thumb,
+.shiki div[class*="overflow-auto"]::-webkit-scrollbar-thumb,
+.prose pre::-webkit-scrollbar-thumb {
+  background: var(--color-fd-border);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.fd-scroll-container::-webkit-scrollbar-thumb:hover,
+.shiki div[class*="overflow-auto"]::-webkit-scrollbar-thumb:hover,
+.prose pre::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fd-muted-foreground);
+}
+
+/* Улучшенная кнопка копирования в CodeBlock */
+.shiki button[aria-label*="Copy"],
+.prose figure button[aria-label*="Copy"] {
+  @apply transition-all duration-200;
+  backdrop-filter: blur(8px);
+}
+
+.shiki button[aria-label*="Copy"]:hover,
+.prose figure button[aria-label*="Copy"]:hover {
+  @apply scale-110;
+  transform: scale(1.1);
+}
+
+.shiki button[data-checked="true"],
+.prose figure button[data-checked="true"] {
+  @apply text-fd-primary;
+}
+
+/* Плавные transitions для inline code */
+.prose code:not(pre code) {
+  @apply px-1.5 py-0.5 rounded bg-fd-muted text-fd-foreground;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.prose code:not(pre code):hover {
+  @apply bg-fd-accent;
+}
+
+/* Улучшенные стили для строк кода */
+.prose pre code {
+  @apply font-mono;
+  font-feature-settings: 'liga' 0;
+}
+
+/* Убираем fade-in анимацию для CodeBlock - в оригинале её нет */
+
+/* Cards компонент - точные стили как в оригинале fumadocs-dev */
+/* Все стили применяются через className в компоненте Card - никаких дополнительных анимаций */

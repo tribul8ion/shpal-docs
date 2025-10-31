@@ -1,0 +1,23 @@
+15:07:38 Service Start
+15:07:38 ==================================
+15:07:38  GoUtilityService - Start
+15:07:38 ==================================
+15:07:38 [Program Start] Version = 1.0.1.20230724 (10:07:12)
+15:07:38 [PrintService]
+15:07:38 ListenPort = 2019
+15:07:38 EnableSSL = False
+15:07:38 
+15:07:38 Encoding = System.Text.UTF8Encoding
+15:07:38 Try to initialize the service instance...
+15:07:38 ====================
+15:07:38 Refresh Job List : 
+15:07:38 Start Listen...(Ready)
+15:07:38 
+15:07:38 [SNMP]
+15:07:38 ListenPort = 162
+15:07:38 EnableSSL = false
+15:07:38 Try to initialize the SNMP instance...
+15:07:39 Start Listen...(Ready)
+15:07:39 
+15:07:39 
+
