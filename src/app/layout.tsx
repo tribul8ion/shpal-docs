@@ -14,6 +14,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://shpaldocs.ru'),
   title: {
     default: 'Shpal Docs - Документация по настройке принтеров',
     template: '%s | Shpal Docs',
@@ -29,9 +30,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    title: 'Shpal Docs - Документация по принтерам',
-    description: 'Руководства по настройке принтеров для системы регистрации',
-    siteName: 'Shpal Docs',
+    url: 'https://shpaldocs.ru',
+    title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
+    description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
+    siteName: 'www.shpaldocs.ru',
+    images: [
+      {
+        url: '/logo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Shpal Docs - Документация EXPOFORUM',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
+    description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
+    images: ['/logo.svg'],
   },
   robots: {
     index: true,

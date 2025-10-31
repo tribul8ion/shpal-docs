@@ -8,8 +8,8 @@ export default function HomePage() {
       <StarBackground />
       <div className="flex flex-col min-h-[calc(100vh-3.5rem)] relative z-10">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center px-4 py-32 md:py-40 gap-8">
-        <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold relative select-none" style={{
+      <section className="flex flex-col items-center justify-center text-center px-4 py-16 sm:py-24 md:py-32 lg:py-40 gap-6 sm:gap-8">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold relative select-none leading-tight" style={{
           background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(200,220,255,0.7) 50%, rgba(150,180,255,0.8) 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
@@ -25,107 +25,107 @@ export default function HomePage() {
         }}>
           EXPOFORUM
         </h1>
-        <p className="text-xl md:text-2xl text-white/70 max-w-3xl backdrop-blur-sm px-6 py-3 rounded-lg">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 max-w-3xl backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg">
           Документация по настройке оборудования для регистрации
         </p>
-        <div className="flex flex-wrap gap-4 mt-4 justify-center">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mt-2 sm:mt-4 justify-center w-full sm:w-auto">
           <Link
             href="/docs"
-            className="px-8 py-4 rounded-xl bg-white/[0.08] backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.15] hover:scale-105 transition-all shadow-xl text-lg"
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-white/[0.08] backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.15] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
           >
             📚 Открыть документацию
           </Link>
           <Link
             href="/docs/godex/godex-80x60"
-            className="px-8 py-4 rounded-xl backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.08] hover:scale-105 transition-all shadow-xl text-lg"
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.08] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
           >
             🚀 Начать с GoDEX
           </Link>
         </div>
-        <div className="mt-6 text-sm text-white/60 max-w-2xl">
+        <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-white/60 max-w-2xl px-4">
           💡 <strong>Совет:</strong> Используйте боковую панель навигации или поиск для быстрого доступа к нужным инструкциям
         </div>
       </section>
 
       {/* About Documentation Section */}
-      <section className="px-4 py-12 md:py-16 max-w-6xl mx-auto w-full">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg">О документации</h2>
-          <p className="text-lg text-white/80 max-w-3xl mx-auto">
+      <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-16 max-w-6xl mx-auto w-full">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-white drop-shadow-lg">О документации</h2>
+          <p className="text-sm sm:text-base md:text-lg text-white/80 max-w-3xl mx-auto">
             Полный справочник по настройке, обслуживанию и устранению неисправностей принтеров для системы регистрации EXPOFORUM
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <Link href="/docs/godex/godex-80x60" className="p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-3 rounded-lg bg-blue-500/20 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
-              <BookOpen className="w-6 h-6 text-blue-300" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <Link href="/docs/godex/godex-80x60" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
+            <div className="p-2 sm:p-3 rounded-lg bg-blue-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-blue-500/30 transition-colors">
+              <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-blue-300" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">Руководства по принтерам</h3>
-            <p className="text-sm text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">Руководства по принтерам</h3>
+            <p className="text-xs sm:text-sm text-white/70">
               Подробные инструкции по настройке принтеров GoDEX, Zebra, Brother и других производителей с пошаговыми описаниями и иллюстрациями
             </p>
           </Link>
 
-          <Link href="/docs/godex/godex-maintenance" className="p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-3 rounded-lg bg-green-500/20 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
-              <Wrench className="w-6 h-6 text-green-300" />
+          <Link href="/docs/godex/godex-maintenance" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
+            <div className="p-2 sm:p-3 rounded-lg bg-green-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-green-500/30 transition-colors">
+              <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-green-300" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-green-300 transition-colors">Устранение неисправностей</h3>
-            <p className="text-sm text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-green-300 transition-colors">Устранение неисправностей</h3>
+            <p className="text-xs sm:text-sm text-white/70">
               Решения типичных проблем, инструкции по обслуживанию и калибровке оборудования для поддержания работоспособности
             </p>
           </Link>
 
-          <Link href="/docs/additional/drivers-godex" className="p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-3 rounded-lg bg-purple-500/20 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
-              <Download className="w-6 h-6 text-purple-300" />
+          <Link href="/docs/additional/drivers-godex" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
+            <div className="p-2 sm:p-3 rounded-lg bg-purple-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-purple-500/30 transition-colors">
+              <Download className="w-5 h-5 sm:w-6 sm:h-6 text-purple-300" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">Драйверы и утилиты</h3>
-            <p className="text-sm text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">Драйверы и утилиты</h3>
+            <p className="text-xs sm:text-sm text-white/70">
               Готовые пакеты драйверов, утилиты для диагностики и вспомогательные инструменты для работы с принтерами
             </p>
           </Link>
 
-          <Link href="/docs/additional/spigf-scripts" className="p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-3 rounded-lg bg-orange-500/20 w-fit mb-4 group-hover:bg-orange-500/30 transition-colors">
-              <Code className="w-6 h-6 text-orange-300" />
+          <Link href="/docs/additional/spigf-scripts" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
+            <div className="p-2 sm:p-3 rounded-lg bg-orange-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-orange-500/30 transition-colors">
+              <Code className="w-5 h-5 sm:w-6 sm:h-6 text-orange-300" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-300 transition-colors">Скрипты и автоматизация</h3>
-            <p className="text-sm text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-orange-300 transition-colors">Скрипты и автоматизация</h3>
+            <p className="text-xs sm:text-sm text-white/70">
               PowerShell скрипты для автоматизации задач, исправления ошибок печати и оптимизации настроек Windows
             </p>
           </Link>
 
-          <Link href="/docs/changelog" className="p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-3 rounded-lg bg-pink-500/20 w-fit mb-4 group-hover:bg-pink-500/30 transition-colors">
-              <FileText className="w-6 h-6 text-pink-300" />
+          <Link href="/docs/changelog" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
+            <div className="p-2 sm:p-3 rounded-lg bg-pink-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-pink-500/30 transition-colors">
+              <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-pink-300" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-pink-300 transition-colors">История изменений</h3>
-            <p className="text-sm text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-pink-300 transition-colors">История изменений</h3>
+            <p className="text-xs sm:text-sm text-white/70">
               Следите за обновлениями документации, новыми руководствами и улучшениями существующих инструкций
             </p>
           </Link>
 
-          <Link href="/docs/tags" className="p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
-            <div className="p-3 rounded-lg bg-cyan-500/20 w-fit mb-4 group-hover:bg-cyan-500/30 transition-colors">
-              <Zap className="w-6 h-6 text-cyan-300" />
+          <Link href="/docs/tags" className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-200 group">
+            <div className="p-2 sm:p-3 rounded-lg bg-cyan-500/20 w-fit mb-3 sm:mb-4 group-hover:bg-cyan-500/30 transition-colors">
+              <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-300" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors">Быстрый поиск</h3>
-            <p className="text-sm text-white/70">
+            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors">Быстрый поиск</h3>
+            <p className="text-xs sm:text-sm text-white/70">
               Удобная навигация по тегам, поиск по содержимому и структурированный каталог всех доступных руководств
             </p>
           </Link>
         </div>
 
-        <div className="mt-8 p-6 rounded-xl backdrop-blur-lg bg-white/[0.05] border border-white/15 hover:bg-white/[0.08] transition-all">
-          <div className="flex items-start gap-4">
+        <div className="mt-6 sm:mt-8 p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.05] border border-white/15 hover:bg-white/[0.08] transition-all">
+          <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
             <div className="p-2 rounded-lg bg-blue-500/20">
               <BookOpen className="w-5 h-5 text-blue-300" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-white mb-3">Структура документации</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-white/70 mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-white mb-3">Структура документации</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 mb-4">
                 <div>
                   <p className="font-medium text-white/90 mb-2">📖 Основные разделы:</p>
                   <ul className="space-y-1.5 ml-4">
@@ -172,24 +172,24 @@ export default function HomePage() {
       </section>
 
       {/* Quick Links Section */}
-      <section className="px-4 py-12 md:py-16 max-w-6xl mx-auto w-full">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-white drop-shadow-lg">Быстрый доступ</h2>
+      <section className="px-4 sm:px-6 py-8 sm:py-12 md:py-16 max-w-6xl mx-auto w-full">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-center text-white drop-shadow-lg">Быстрый доступ</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-12">
           {/* GoDEX */}
           <Link
             href="/docs/godex/godex-80x60"
-            className="group p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
+            className="group p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-blue-400/20 group-hover:bg-blue-400/30 transition-colors">
-                <Settings className="w-6 h-6 text-blue-300" />
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="p-2 sm:p-3 rounded-lg bg-blue-400/20 group-hover:bg-blue-400/30 transition-colors">
+                <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-blue-300" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-1 text-white group-hover:text-blue-300 transition-colors">
+                <h3 className="font-semibold text-base sm:text-lg mb-1 text-white group-hover:text-blue-300 transition-colors">
                   GoDEX
                 </h3>
-                <p className="text-sm text-white/70">
+                <p className="text-xs sm:text-sm text-white/70">
                   Настройка принтеров этикеток Godex
                 </p>
               </div>
@@ -199,17 +199,17 @@ export default function HomePage() {
           {/* Zebra */}
           <Link
             href="/docs/zebra/zebra-badges"
-            className="group p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
+            className="group p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-green-400/20 group-hover:bg-green-400/30 transition-colors">
-                <Tag className="w-6 h-6 text-green-300" />
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="p-2 sm:p-3 rounded-lg bg-green-400/20 group-hover:bg-green-400/30 transition-colors">
+                <Tag className="w-5 h-5 sm:w-6 sm:h-6 text-green-300" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-1 text-white group-hover:text-green-300 transition-colors">
+                <h3 className="font-semibold text-base sm:text-lg mb-1 text-white group-hover:text-green-300 transition-colors">
                   Zebra
                 </h3>
-                <p className="text-sm text-white/70">
+                <p className="text-xs sm:text-sm text-white/70">
                   Настройка принтеров для печати бейджей
                 </p>
               </div>
@@ -219,17 +219,17 @@ export default function HomePage() {
           {/* Brother */}
           <Link
             href="/docs/brother/brother-samoreg"
-            className="group p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
+            className="group p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all duration-200 shadow-xl hover:shadow-2xl"
           >
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-pink-400/20 group-hover:bg-pink-400/30 transition-colors">
-                <Printer className="w-6 h-6 text-pink-300" />
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="p-2 sm:p-3 rounded-lg bg-pink-400/20 group-hover:bg-pink-400/30 transition-colors">
+                <Printer className="w-5 h-5 sm:w-6 sm:h-6 text-pink-300" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-lg mb-1 text-white group-hover:text-pink-300 transition-colors">
+                <h3 className="font-semibold text-base sm:text-lg mb-1 text-white group-hover:text-pink-300 transition-colors">
                   Brother
                 </h3>
-                <p className="text-sm text-white/70">
+                <p className="text-xs sm:text-sm text-white/70">
                   Настройка принтеров для саморегистрации
                 </p>
               </div>
@@ -238,65 +238,65 @@ export default function HomePage() {
         </div>
 
         {/* Popular Guides */}
-        <div className="mt-12">
-          <h3 className="text-xl font-semibold mb-6 text-white drop-shadow-lg">Популярные руководства</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mt-8 sm:mt-12">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-white drop-shadow-lg">Популярные руководства</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             <Link
               href="/docs/godex/godex-80x60"
-              className="group p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
+              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
             >
-              <div className="flex items-center gap-3 mb-2">
-                <Settings className="w-5 h-5 text-blue-300" />
-                <span className="font-medium text-white group-hover:text-blue-300 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                <Settings className="w-4 h-4 sm:w-5 sm:h-5 text-blue-300" />
+                <span className="font-medium text-sm sm:text-base text-white group-hover:text-blue-300 transition-colors">
                   Настройка печати Godex из Windows
                 </span>
               </div>
-              <p className="text-sm text-white/70">
+              <p className="text-xs sm:text-sm text-white/70">
                 Пошаговая инструкция по настройке параметров печати
               </p>
             </Link>
 
             <Link
               href="/docs/zebra/zebra-white"
-              className="group p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
+              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
             >
-              <div className="flex items-center gap-3 mb-2">
-                <Tag className="w-5 h-5 text-green-300" />
-                <span className="font-medium text-white group-hover:text-green-300 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                <Tag className="w-4 h-4 sm:w-5 sm:h-5 text-green-300" />
+                <span className="font-medium text-sm sm:text-base text-white group-hover:text-green-300 transition-colors">
                   Настройка Zebra для этикеток 80×60
                 </span>
               </div>
-              <p className="text-sm text-white/70">
+              <p className="text-xs sm:text-sm text-white/70">
                 Инструкция по настройке принтера для белых этикеток
               </p>
             </Link>
 
             <Link
               href="/docs/brother/brother-toner"
-              className="group p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
+              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
             >
-              <div className="flex items-center gap-3 mb-2">
-                <Wrench className="w-5 h-5 text-pink-300" />
-                <span className="font-medium text-white group-hover:text-pink-300 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-pink-300" />
+                <span className="font-medium text-sm sm:text-base text-white group-hover:text-pink-300 transition-colors">
                   Сброс ошибки тонера Brother
                 </span>
               </div>
-              <p className="text-sm text-white/70">
+              <p className="text-xs sm:text-sm text-white/70">
                 Решение проблемы с ошибками тонера
               </p>
             </Link>
 
             <Link
               href="/docs/godex/godex-maintenance"
-              className="group p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
+              className="group p-4 sm:p-5 rounded-lg backdrop-blur-lg bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-all shadow-xl"
             >
-              <div className="flex items-center gap-3 mb-2">
-                <Wrench className="w-5 h-5 text-orange-300" />
-                <span className="font-medium text-white group-hover:text-orange-300 transition-colors">
+              <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                <Wrench className="w-4 h-4 sm:w-5 sm:h-5 text-orange-300" />
+                <span className="font-medium text-sm sm:text-base text-white group-hover:text-orange-300 transition-colors">
                   Обслуживание принтеров Godex
                 </span>
               </div>
-              <p className="text-sm text-white/70">
+              <p className="text-xs sm:text-sm text-white/70">
                 Очистка и устранение неисправностей
               </p>
             </Link>
@@ -305,24 +305,24 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="px-4 py-12 border-t border-white/10">
+      <section className="px-4 py-8 sm:py-12 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold text-white mb-2">4</div>
-              <div className="text-sm text-white/70">Руководства GoDEX</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">4</div>
+              <div className="text-xs sm:text-sm text-white/70">Руководства GoDEX</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white mb-2">3</div>
-              <div className="text-sm text-white/70">Руководства Zebra</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">3</div>
+              <div className="text-xs sm:text-sm text-white/70">Руководства Zebra</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white mb-2">3</div>
-              <div className="text-sm text-white/70">Руководства Brother</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">3</div>
+              <div className="text-xs sm:text-sm text-white/70">Руководства Brother</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-white mb-2">10+</div>
-              <div className="text-sm text-white/70">Всего инструкций</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">10+</div>
+              <div className="text-xs sm:text-sm text-white/70">Всего инструкций</div>
             </div>
           </div>
         </div>
@@ -330,22 +330,22 @@ export default function HomePage() {
 
 
       {/* CTA Section */}
-      <section className="px-4 py-12 text-center border-t border-white/10">
+      <section className="px-4 py-8 sm:py-12 text-center border-t border-white/10">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white drop-shadow-lg">Готовы начать?</h2>
-          <p className="text-white/80 mb-6 drop-shadow-md">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-white drop-shadow-lg">Готовы начать?</h2>
+          <p className="text-sm sm:text-base text-white/80 mb-4 sm:mb-6 drop-shadow-md">
             Выберите нужное руководство или воспользуйтесь поиском для быстрого доступа к информации
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
             <Link
               href="/docs"
-              className="inline-block px-8 py-4 rounded-xl bg-white/[0.08] backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.15] hover:scale-105 transition-all shadow-xl text-lg"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-white/[0.08] backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.15] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
             >
               📚 Открыть документацию
             </Link>
             <Link
               href="/docs/downloads"
-              className="inline-block px-8 py-4 rounded-xl backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.08] hover:scale-105 transition-all shadow-xl text-lg"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 rounded-xl backdrop-blur-lg border border-white/20 text-white font-medium hover:bg-white/[0.08] hover:scale-105 transition-all shadow-xl text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
             >
               📥 Центр загрузок
             </Link>
