@@ -37,6 +37,10 @@ Thumbs.db
 *.swo
 *~
 
+# Large files (use GitHub Releases or external hosting)
+public/downloads/drivers/*.zip
+content/docs/additional/drivers/Zebra/ZebraDesigner/ZebraDesigner.exe
+
 # Fumadocs - игнорировать папки с данными браузера
 content/docs/additional/drivers/инкогнито без полей/
 content/docs/additional/drivers/User Data/
