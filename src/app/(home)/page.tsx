@@ -1,6 +1,35 @@
 import Link from 'next/link';
 import { Printer, Settings, Wrench, Tag, UserPlus, BookOpen, FileText, Download, Code, Zap } from 'lucide-react';
 import StarBackground from '@/components/star-background';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Shpal Docs - Документация EXPOFORUM',
+  description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
+  openGraph: {
+    title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
+    description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
+    url: 'https://shpaldocs.ru',
+    siteName: 'www.shpaldocs.ru',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Shpal Docs - Документация по настройке принтеров EXPOFORUM',
+        type: 'image/png',
+      },
+    ],
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
+    description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
+    images: ['/images/og-image.png'],
+  },
+};
 
 export default function HomePage() {
   return (
