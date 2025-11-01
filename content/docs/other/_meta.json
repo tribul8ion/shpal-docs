@@ -1,3 +1,7 @@
 {
-  "icon": "Settings"
+  "icon": "Printer",
+  "pages": [
+    "index",
+    "m252"
+  ]
 }

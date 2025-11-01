@@ -1,4 +1,10 @@
 {
-  "icon": "Tag"
+  "icon": "Printer",
+  "pages": [
+    "index",
+    "zebra-badges",
+    "zebra-white",
+    "zebra-transparent"
+  ]
 }
 

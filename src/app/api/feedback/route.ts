@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export interface Feedback {
-  opinion: 'good' | 'bad';
+  opinion: 'good' | 'bad' | 'error';
   url?: string;
   message: string;
   pageTitle?: string;
@@ -27,14 +27,18 @@ async function sendToTelegram(feedback: Feedback) {
     timeStyle: 'short',
   });
 
-  const emoji = feedback.opinion === 'good' ? '👍' : '👎';
-  const status = feedback.opinion === 'good' ? 'Полезно' : 'Нужно улучшить';
+  const emoji = feedback.opinion === 'good' ? '👍' : feedback.opinion === 'error' ? '⚠️' : '👎';
+  const status = feedback.opinion === 'good' ? 'Полезно' : feedback.opinion === 'error' ? 'Найдена ошибка' : 'Нужно улучшить';
 
   // Форматируем сообщение с HTML разметкой для красивого отображения
+  const title = feedback.opinion === 'error' 
+    ? '🐛 <b>Найдена ошибка в документации!</b>' 
+    : '📝 <b>Новый отзыв о документации</b>';
+  
   const message = `
-📝 <b>Новый отзыв о документации</b>
+${title}
 
-${emoji} <b>Статус:</b> ${status}
+${emoji} <b>Тип:</b> ${status}
 👤 <b>От:</b> ${feedback.name || 'Аноним'}
 📄 <b>Страница:</b> ${feedback.pageTitle || 'Не указано'}
 🔗 <b>URL:</b> <code>${feedback.url || 'Не указано'}</code>

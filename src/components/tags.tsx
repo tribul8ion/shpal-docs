@@ -15,9 +15,13 @@ export function Tag({ name, variant = 'default' }: TagProps) {
     primary: 'bg-fd-primary/10 text-fd-primary hover:bg-fd-primary/20 border border-fd-primary/20',
   };
 
+  // Нормализуем тег: lowercase и trim для правильного URL
+  const normalizedTag = name.toLowerCase().trim();
+  const encodedTag = encodeURIComponent(normalizedTag);
+
   return (
     <Link 
-      href={`/docs/tags/${encodeURIComponent(name.toLowerCase())}`}
+      href={`/docs/tags/${encodedTag}`}
       className={`${baseClasses} ${variantClasses[variant]}`}
     >
       <TagIcon className="w-3.5 h-3.5" />

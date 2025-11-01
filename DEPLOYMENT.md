@@ -85,20 +85,51 @@
 4. Поместите файл в папку `public/images/og-image.png`
 
 **После добавления изображения:**
-1. Обновите путь в `src/app/(home)/page.tsx`:
+1. Убедитесь, что путь обновлен в `src/app/layout.tsx` и `src/app/(home)/page.tsx`:
    ```typescript
    images: [
      {
-       url: '/images/og-image.png', // Замените с временного на это
-       // ...
+       url: '/images/og-image.png',
+       width: 1200,
+       height: 630,
+       type: 'image/png',
      },
    ],
    ```
 2. Закоммитьте и запушьте изменения
-3. Telegram обновит превью через некоторое время (может потребоваться очистка кэша)
+3. Дождитесь деплоя на Vercel
 
-**Временное решение:**
-Сейчас используется `expoforum-badge-preview.png` как временное изображение. Вы можете заменить его на специально созданное `og-image.png`.
+**Проверка превью:**
+1. Откройте сайт: https://shpaldocs.ru
+2. Проверьте мета-теги через инструменты:
+   - [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) - вставьте URL и нажмите "Debug"
+   - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) - для проверки превью
+   - [Twitter Card Validator](https://cards-dev.twitter.com/validator) - для Twitter
+
+**Очистка кэша Telegram:**
+Telegram агрессивно кэширует превью ссылок. Чтобы обновить превью:
+
+**Вариант 1: Через бота @webpagebot**
+1. Отправьте ссылку боту: `@webpagebot https://shpaldocs.ru`
+2. Бот проверит и обновит кэш
+
+**Вариант 2: Изменить URL (временно)**
+1. Добавьте параметр к URL: `https://shpaldocs.ru?v=2`
+2. Отправьте новую ссылку в Telegram
+3. После проверки можно убрать параметр
+
+**Вариант 3: Подождать**
+- Telegram обновляет кэш автоматически, но это может занять **до 24 часов**
+- После каждого изменения мета-тегов нужно ждать обновления кэша
+
+**Проверка что мета-теги работают:**
+1. Откройте исходный код страницы: `https://shpaldocs.ru`
+2. Найдите в `<head>` теги:
+   ```html
+   <meta property="og:image" content="https://shpaldocs.ru/images/og-image.png" />
+   <meta property="og:title" content="Shpal Docs - Документация по принтерам EXPOFORUM" />
+   ```
+3. Если теги есть - всё настроено правильно, просто ждите обновления кэша Telegram
 
 ---
 

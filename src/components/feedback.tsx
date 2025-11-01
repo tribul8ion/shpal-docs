@@ -1,6 +1,6 @@
 'use client';
 
-import { ThumbsDown, ThumbsUp, MessageSquare } from 'lucide-react';
+import { ThumbsDown, ThumbsUp, MessageSquare, AlertTriangle } from 'lucide-react';
 import { type SyntheticEvent, useEffect, useState, useTransition } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -12,7 +12,7 @@ const rateButtonVariants = {
 };
 
 export interface Feedback {
-  opinion: 'good' | 'bad';
+  opinion: 'good' | 'bad' | 'error';
   url?: string;
   message: string;
   pageTitle?: string;
@@ -26,7 +26,7 @@ interface Result extends Feedback {
 export function Feedback() {
   const url = usePathname();
   const [previous, setPrevious] = useState<Result | null>(null);
-  const [opinion, setOpinion] = useState<'good' | 'bad' | null>(null);
+  const [opinion, setOpinion] = useState<'good' | 'bad' | 'error' | null>(null);
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
   const [isPending, startTransition] = useTransition();
@@ -101,7 +101,7 @@ export function Feedback() {
                 Был ли полезен этот материал?
               </p>
             </div>
-            <div className="flex flex-row items-center gap-3">
+            <div className="flex flex-row items-center gap-3 flex-wrap">
               <button
                 disabled={previous !== null || isPending}
                 className={cn(
@@ -134,6 +134,22 @@ export function Feedback() {
                 <ThumbsDown className="size-4" />
                 Нужно улучшить
               </button>
+              <button
+                disabled={previous !== null || isPending}
+                className={cn(
+                  rateButtonVariants.base,
+                  activeOpinion === 'error'
+                    ? 'bg-red-500/20 text-red-400 border-red-500/50 [&_svg]:fill-current shadow-sm'
+                    : 'bg-fd-card text-red-400 border-red-500/30 hover:bg-red-500/10 hover:border-red-500/50',
+                )}
+                onClick={() => {
+                  setOpinion('error');
+                  setIsOpen(true);
+                }}
+              >
+                <AlertTriangle className="size-4" />
+                Нашли ошибку?
+              </button>
             </div>
 
             {isOpen && opinion && (
@@ -157,7 +173,9 @@ export function Feedback() {
                   placeholder={
                     opinion === 'good'
                       ? 'Что именно было полезным? Ваши пожелания...'
-                      : 'Что можно улучшить? Опишите проблему или ваши предложения...'
+                      : opinion === 'error'
+                        ? 'Опишите найденную ошибку. Укажите, что именно не так, шаги для воспроизведения и любую другую полезную информацию...'
+                        : 'Что можно улучшить? Опишите проблему или ваши предложения...'
                   }
                   onKeyDown={(e) => {
                     if (!e.shiftKey && e.key === 'Enter') {

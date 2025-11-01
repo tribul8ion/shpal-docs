@@ -1,4 +1,11 @@
 {
-  "icon": "Printer"
+  "icon": "Printer",
+  "pages": [
+    "index",
+    "godex-80x60",
+    "godex-calibration",
+    "godex-commands",
+    "godex-maintenance"
+  ]
 }
 

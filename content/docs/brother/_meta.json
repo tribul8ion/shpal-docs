@@ -1,4 +1,10 @@
 {
-  "icon": "Copy"
+  "icon": "Printer",
+  "pages": [
+    "index",
+    "brother-samoreg",
+    "brother-badges",
+    "brother-toner"
+  ]
 }
 

@@ -18,9 +18,10 @@ export default function TagsPage() {
       const tagsArray = Array.isArray(tags) ? tags : [tags];
       tagsArray.forEach((tag: string) => {
         if (tag && typeof tag === 'string') {
-          const lowerTag = tag.toLowerCase().trim();
-          if (lowerTag) {
-            tagCounts.set(lowerTag, (tagCounts.get(lowerTag) || 0) + 1);
+          // Нормализуем тег для единообразия
+          const normalizedTag = tag.toLowerCase().trim();
+          if (normalizedTag) {
+            tagCounts.set(normalizedTag, (tagCounts.get(normalizedTag) || 0) + 1);
           }
         }
       });
@@ -44,21 +45,25 @@ export default function TagsPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {sortedTags.map(([tag, count]) => (
-          <Link
-            key={tag}
-            href={`/docs/tags/${encodeURIComponent(tag)}`}
-            className="group flex items-center justify-between p-4 rounded-lg border border-fd-border bg-fd-card hover:bg-fd-muted/50 transition-all hover:scale-105 hover:shadow-lg"
-          >
-            <div className="flex items-center gap-2">
-              <TagIcon className="w-4 h-4 text-fd-primary" />
-              <span className="font-medium text-fd-foreground">#{tag}</span>
-            </div>
-            <span className="text-sm font-bold text-fd-primary bg-fd-primary/10 px-2 py-1 rounded-full">
-              {count}
-            </span>
-          </Link>
-        ))}
+        {sortedTags.map(([tag, count]) => {
+          // Кодируем тег для URL
+          const encodedTag = encodeURIComponent(tag);
+          return (
+            <Link
+              key={tag}
+              href={`/docs/tags/${encodedTag}`}
+              className="group flex items-center justify-between p-4 rounded-lg border border-fd-border bg-fd-card hover:bg-fd-muted/50 transition-all hover:scale-105 hover:shadow-lg"
+            >
+              <div className="flex items-center gap-2">
+                <TagIcon className="w-4 h-4 text-fd-primary" />
+                <span className="font-medium text-fd-foreground">#{tag}</span>
+              </div>
+              <span className="text-sm font-bold text-fd-primary bg-fd-primary/10 px-2 py-1 rounded-full">
+                {count}
+              </span>
+            </Link>
+          );
+        })}
       </div>
 
       {sortedTags.length === 0 && (

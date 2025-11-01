@@ -9,7 +9,8 @@ interface TagPageProps {
 
 export default async function TagPage(props: TagPageProps) {
   const params = await props.params;
-  const tag = decodeURIComponent(params.tag);
+  const decodedTag = decodeURIComponent(params.tag);
+  const normalizedTag = decodedTag.toLowerCase().trim();
 
   // Получаем все страницы
   const allPages = source.getPages();
@@ -24,7 +25,9 @@ export default async function TagPage(props: TagPageProps) {
     const tagsArray = Array.isArray(tags) ? tags : [tags];
     return tagsArray.some((t: string) => {
       if (typeof t === 'string') {
-        return t.toLowerCase().trim() === tag.toLowerCase().trim();
+        // Нормализуем тег для сравнения
+        const normalizedT = t.toLowerCase().trim();
+        return normalizedT === normalizedTag;
       }
       return false;
     });
@@ -45,7 +48,7 @@ export default async function TagPage(props: TagPageProps) {
         </Link>
         <div className="flex items-center gap-3 mb-2">
           <Tag className="w-8 h-8 text-fd-primary" />
-          <h1 className="text-4xl font-bold">#{tag}</h1>
+          <h1 className="text-4xl font-bold">#{decodedTag}</h1>
         </div>
         <p className="text-fd-muted-foreground">
           Найдено документов: {filteredPages.length}
@@ -97,10 +100,19 @@ export async function generateStaticParams() {
     const data = page.data as any;
     if (data.tags) {
       const tags = Array.isArray(data.tags) ? data.tags : [data.tags];
-      tags.forEach((tag: string) => allTags.add(tag.toLowerCase()));
+      tags.forEach((tag: string) => {
+        if (tag && typeof tag === 'string') {
+          // Нормализуем тег (lowercase, trim)
+          const normalized = tag.toLowerCase().trim();
+          if (normalized) {
+            allTags.add(normalized);
+          }
+        }
+      });
     }
   });
 
+  // Генерируем параметры с правильной кодировкой
   return Array.from(allTags).map((tag) => ({
     tag: encodeURIComponent(tag),
   }));

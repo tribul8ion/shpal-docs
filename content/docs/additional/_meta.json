@@ -1,3 +1,13 @@
 {
-  "icon": "Wrench"
+  "icon": "Wrench",
+  "pages": [
+    "index",
+    "drivers-overview",
+    "drivers-godex",
+    "drivers-zebra",
+    "drivers-brother",
+    "spigf-scripts",
+    "windows-scripts",
+    "utilities"
+  ]
 }
