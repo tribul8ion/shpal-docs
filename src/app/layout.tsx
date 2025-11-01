@@ -2,6 +2,7 @@ import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -23,8 +24,14 @@ export const metadata: Metadata = {
   keywords: ['принтеры', 'GoDEX', 'Zebra', 'Brother', 'настройка', 'документация', 'руководство', 'калибровка'],
   authors: [{ name: 'Shpal Team' }],
   icons: {
-    icon: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
   },
   manifest: '/manifest.json',
   openGraph: {
@@ -36,10 +43,11 @@ export const metadata: Metadata = {
     siteName: 'www.shpaldocs.ru',
     images: [
       {
-        url: '/logo.svg',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Shpal Docs - Документация EXPOFORUM',
+        type: 'image/png',
       },
     ],
   },
@@ -47,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Shpal Docs - Документация по принтерам EXPOFORUM',
     description: 'Добро пожаловать в документацию - все руководства и инструкции в одном месте',
-    images: ['/logo.svg'],
+    images: ['/images/og-image.png'],
   },
   robots: {
     index: true,
@@ -72,6 +80,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
     >
       <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <RootProvider>{children}</RootProvider>
+        <Analytics />
       </body>
     </html>
   );
